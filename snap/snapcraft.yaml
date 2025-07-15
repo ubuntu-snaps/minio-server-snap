@@ -29,6 +29,8 @@ parts:
       - GOPATH: $CRAFT_PART_INSTALL
     build-snaps:
       - go
+    stage:
+      - bin
 
   mc:
     plugin: make
@@ -38,6 +40,8 @@ parts:
       - GOPATH: $CRAFT_PART_INSTALL
     build-snaps:
       - go
+    stage:
+      - bin
 
   overlay:
     plugin: dump
