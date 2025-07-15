@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+if [ ! -d $SNAP_COMMON/conf ]; then
+    mkdir -p $SNAP_COMMON/conf
+    cp -r $SNAP/conf/grafana.ini $SNAP_COMMON/conf
+fi

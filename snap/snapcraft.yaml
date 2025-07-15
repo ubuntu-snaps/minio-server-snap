@@ -1,0 +1,35 @@
+name: minio-server
+summary: Minio Object Store
+description: Minio Object Store
+version: "20250613"
+adopt-info: overlay
+
+base: core24
+grade: devel
+confinement: devmode
+
+platforms:
+  amd64:
+
+apps:
+  minio:
+    command: bin/minio server $SNAP_COMMON/data --console-address ":9001"
+    daemon: simple
+    plugs: [network, network-bind]
+
+parts:
+  minio:
+    plugin: go
+    source: https://github.com/minio/minio.git
+    source-tag: RELEASE.2025-06-13T11-33-47Z
+    # build-environment:
+    #   - GOPROXY: https://proxy.golang.com.cn,direct
+    build-snaps:
+      - go
+
+  overlay:
+    plugin: dump
+    source: overlay
+    override-stage: |
+      craftctl default
+      craftctl set version="$(craftctl get version)+git$(git rev-parse --short HEAD)"
