@@ -1,7 +1,7 @@
 name: minio-server
 summary: Minio Object Store
 description: Minio Object Store
-version: "20250613"
+version: "20250422"
 adopt-info: overlay
 
 base: core24
@@ -21,7 +21,7 @@ parts:
   minio:
     plugin: go
     source: https://github.com/minio/minio.git
-    source-tag: RELEASE.2025-06-13T11-33-47Z
+    source-tag: RELEASE.2025-04-22T22-12-26Z
     # build-environment:
     #   - GOPROXY: https://proxy.golang.com.cn,direct
     build-snaps:
