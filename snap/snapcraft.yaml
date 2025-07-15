@@ -16,14 +16,26 @@ apps:
     command: bin/start-minio.sh
     daemon: simple
     plugs: [network, network-bind]
+  mc:
+    command: bin/mc
+    plugs: [network]
 
 parts:
   minio:
     plugin: make
     source: https://github.com/minio/minio.git
     source-tag: RELEASE.2025-04-22T22-12-26Z
-    # build-environment:
-    #   - GOPROXY: https://proxy.golang.com.cn,direct
+    build-environment:
+      - GOPATH: $CRAFT_PART_INSTALL
+    build-snaps:
+      - go
+
+  mc:
+    plugin: make
+    source: https://github.com/minio/mc.git
+    source-tag: RELEASE.2025-04-16T18-13-26Z
+    build-environment:
+      - GOPATH: $CRAFT_PART_INSTALL
     build-snaps:
       - go
 
