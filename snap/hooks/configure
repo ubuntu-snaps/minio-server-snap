@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+if [ -z "$(snapctl get address)" ]; then
+	snapctl set address=":9000";
+fi
+
+if [ -z "$(snapctl get console-address)" ]; then
+	snapctl set console-address=":9001";
+fi
+
+if [ -z "$(snapctl get root-user)" ]; then
+	snapctl set root-user="root";
+fi
+
+if [ -z "$(snapctl get root-password)" ]; then
+	snapctl set root-password="Root#123";
+fi
+
+snapctl restart "$SNAP_INSTANCE_NAME"
+
